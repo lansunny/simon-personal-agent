@@ -1,0 +1,152 @@
+/* 聊天页使用实际布局分配空间：顶部、消息、输入、导航互不覆盖。 */
+.phone.screen-chat {
+  display: flex;
+  flex-direction: column;
+  height: calc(100dvh - 24px);
+  min-height: 0;
+  overflow: hidden;
+}
+.phone.screen-chat:has(.connection-error) {
+  height: calc(100dvh - 24px);
+  min-height: 0;
+}
+.screen-chat > .prototype-tag { flex: 0 0 22px; height: 22px; padding-inline: 20px; }
+.screen-chat > .phone-header { flex: 0 0 52px; height: 52px; padding-inline: 20px; }
+.screen-chat .wordmark { font-size: 22px; }
+.screen-chat .avatar-toggle { width: 32px; height: 32px; }
+.screen-chat > .connection-error { flex: 0 1 auto; max-height: 100px; overflow: auto; margin-block: 4px; }
+.phone.screen-chat:has(.connection-error) .chat-thread { min-height: 0; }
+.screen-chat > main { flex: 1 1 0; min-height: 0; overflow: hidden; }
+.screen-chat .chat-main {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  min-height: 0;
+}
+
+/* 保留玩偶陪伴感，横向状态栏不再占用整块对话空间。 */
+.screen-chat .chat-presence {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 36px;
+  align-items: center;
+  gap: 12px;
+  height: 86px;
+  margin: 2px 12px 8px;
+  padding: 12px;
+  border-radius: 18px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.screen-chat .chat-presence-copy { grid-column: 2; grid-row: 1; min-width: 0; padding: 0; }
+.screen-chat .chat-presence .companion-id { font-size: 9px; letter-spacing: .5px; }
+.screen-chat .chat-presence-copy h1 { font-size: 20px; line-height: 1.25; letter-spacing: -.6px; margin-top: 3px; }
+.screen-chat .presence-status { display: block; max-width: none; margin-top: 4px; font-size: 10px; line-height: 1.4; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
+.screen-chat .chat-mascot { position: relative; inset: auto; grid-column: 1; grid-row: 1; width: 56px; height: 60px; }
+.screen-chat .voice-chip { position: relative; inset: auto; grid-column: 3; grid-row: 1; display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border-radius: 18px; }
+.screen-chat .voice-label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* 只在消息区域滚动；文字有独立底色、内边距和明确的两侧对齐。 */
+.screen-chat .chat-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  height: auto;
+  min-height: 0;
+  padding: 14px 16px 22px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-padding-block: 16px;
+}
+.screen-chat .chat-thread > * { flex: 0 0 auto; }
+.screen-chat .user-message,
+.screen-chat .heng-message {
+  width: fit-content;
+  min-width: 0;
+  margin-bottom: 0;
+  padding: 12px 15px;
+  font-size: 14px;
+  line-height: 1.8;
+  overflow-wrap: anywhere;
+  animation: message-arrive 220ms var(--ease) both;
+}
+.screen-chat .user-message { max-width: 85%; margin-left: auto; margin-right: 0; background: var(--lime); color: var(--ink); border-radius: 18px 18px 5px 18px; }
+.screen-chat .heng-message { max-width: 96%; margin-left: 0; margin-right: auto; background: #252429; border: 1px solid #fda7ce24; border-radius: 5px 18px 18px 18px; }
+.screen-chat .heng-message p,
+.screen-chat .user-message p { line-height: 1.8; white-space: pre-wrap; }
+.screen-chat .speaker-name { margin-bottom: 6px; font-size: 10px; font-weight: 600; letter-spacing: .4px; }
+.screen-chat .chat-thread > .inline-plan { width: 96%; margin-top: 0; }
+.screen-chat .clarification-inline,
+.screen-chat .job-status { margin: 0; padding-block: 10px; }
+.screen-chat .thinking-dots { padding: 4px 16px 10px; }
+
+/* 输入区回到文档流中，移除原先整块蓝色浮层。 */
+.screen-chat .chat-composer-zone {
+  position: relative;
+  inset: auto;
+  transform: none;
+  width: 100%;
+  max-width: none;
+  padding: 8px 16px 2px;
+  border-radius: 0;
+  background: var(--ink);
+  border-top: 1px solid #ffffff0d;
+  z-index: 2;
+}
+.screen-chat .quick-prompts { justify-content: flex-start; gap: 8px; margin-bottom: 8px; overflow-x: auto; scrollbar-width: none; }
+.screen-chat .quick-prompts::-webkit-scrollbar { display: none; }
+.screen-chat .quick-prompts button { flex: 0 0 auto; min-height: 26px; padding: 3px 10px; border-color: #ffffff24; color: #d5d0d8; font-size: 10px; line-height: 1.6; }
+.screen-chat .composer { min-height: 48px; padding: 5px 6px 5px 14px; gap: 6px; border-radius: 24px; --lg-bezel: 18; }
+/* 折射纹理异步就绪前也保持输入文字清晰，避免切页瞬间闪成透明。 */
+.screen-chat .composer:not([data-lg-ready]) { background: rgba(250, 248, 242, .9); }
+.screen-chat .voice-chip:not([data-lg-ready]) { background: #ffffff55; }
+.screen-chat .composer textarea { min-height: 26px; max-height: 84px; padding: 3px 0; font-size: 14px; line-height: 1.5; }
+.screen-chat .dictate-button { width: 28px; height: 36px; }
+.screen-chat .send-action { width: 36px; height: 36px; }
+.screen-chat .bottom-dock {
+  position: relative;
+  inset: auto;
+  transform: none;
+  flex: 0 0 60px;
+  height: 60px;
+  width: calc(100% - 32px);
+  margin: 8px auto calc(8px + var(--safe));
+  border-radius: 30px;
+  z-index: 3;
+}
+.screen-chat .bottom-dock button { min-height: 46px; border-radius: 23px; gap: 3px; }
+.screen-chat .bottom-dock button span { font-size: 10px; }
+.screen-chat .dock-selection { border-radius: 23px; }
+.screen-chat .feedback-toast { bottom: calc(174px + var(--safe)); }
+
+/* 切页仅改变透明度与小幅位移，避免放大卡片挤占消息区域。 */
+.screen-enter-active { transition: opacity 240ms var(--ease), transform 240ms var(--ease); }
+.screen-leave-active { transition: opacity 120ms ease-out, transform 120ms ease-out; }
+.screen-enter-from { opacity: 0; transform: translateY(8px); }
+.screen-leave-to { opacity: 0; transform: translateY(-4px); }
+@keyframes message-arrive { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.motion-off .screen-enter-active,
+.motion-off .screen-leave-active { transition: none; }
+.motion-off .screen-enter-from,
+.motion-off .screen-leave-to { opacity: 1; transform: none; }
+.motion-off .chat-thread > * { animation: none; }
+
+@media (max-width: 500px) {
+  .phone.screen-chat,
+  .phone.screen-chat:has(.connection-error) { height: 100dvh; min-height: 0; margin: 0 auto; }
+}
+@media (max-height: 620px) {
+  .screen-chat > .phone-header { flex-basis: 46px; height: 46px; }
+  .screen-chat .chat-presence { height: 72px; padding-block: 8px; }
+  .screen-chat .chat-mascot { height: 52px; width: 52px; }
+  .screen-chat .chat-presence-copy h1 { font-size: 18px; }
+  .screen-chat .chat-presence .companion-id { display: none; }
+  .screen-chat .chat-thread { padding-top: 10px; }
+}
+@media (max-height: 520px) {
+  .screen-chat:has(.composer textarea:focus) .bottom-dock { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .screen-enter-active, .screen-leave-active { transition: none; }
+  .screen-enter-from, .screen-leave-to { opacity: 1; transform: none; }
+  .screen-chat .chat-thread > * { animation: none; }
+}

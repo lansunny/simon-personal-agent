@@ -1,0 +1,5 @@
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false"><trust-anchors><certificates src="system" /></trust-anchors></base-config>
+    <!-- 仅debug包认可用户亲自安装的开发CA。release不继承此项，不绕过证书校验。 -->
+    <debug-overrides><trust-anchors><certificates src="user" /></trust-anchors></debug-overrides>
+</network-security-config>

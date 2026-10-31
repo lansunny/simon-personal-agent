@@ -1,0 +1,9 @@
+# Optional web presentation layer (combine with agent.txt).
+fastapi==0.122.0
+uvicorn==0.38.0
+
+# IANA calendar timezones on Windows.
+tzdata==2026.6
+
+icalendar==7.3.0
+recurring-ical-events==3.8.2

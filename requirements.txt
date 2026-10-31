@@ -1,0 +1,3 @@
+# Full application; direct dependencies pinned, not a transitive lockfile.
+-r requirements/agent.txt
+-r requirements/web.txt

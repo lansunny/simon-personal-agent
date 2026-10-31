@@ -1,0 +1,8 @@
+# Agent-only learning: schemas, LangGraph, checkpoints, local configuration.
+pydantic==2.12.5
+langgraph==1.0.3
+langgraph-checkpoint-sqlite==3.0.0
+python-dotenv==1.1.1
+
+# Local stdio MCP tool bridge
+mcp==1.12.4

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="408" viewBox="0 0 1200 408" role="img" aria-labelledby="title desc">
+  <title id="title">Simon — Health Personal Agent</title><desc id="desc">LangGraph multi-agent coordination, persistent memory and controlled actions.</desc>
+  <defs><pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#171719" opacity=".08"/></pattern></defs>
+  <rect width="1200" height="408" rx="28" fill="#faf8f2"/>
+  <rect x="748" width="452" height="408" rx="28" fill="#fda7ce"/>
+  <path d="M748 0h40v408h-40z" fill="#fda7ce"/>
+  <rect x="756" y="16" width="428" height="376" rx="18" fill="url(#dots)"/>
+  <g font-family="Inter,Aptos,Arial,Microsoft YaHei,sans-serif" fill="#171719">
+    <text x="52" y="58" font-size="13" font-weight="700" letter-spacing="2">PERSONAL AGENT / MULTI-AGENT SYSTEM</text>
+    <text x="48" y="183" font-size="112" font-weight="800" letter-spacing="-7">simon</text><circle cx="393" cy="157" r="13" fill="#c5ef45"/>
+    <text x="54" y="240" font-size="28" font-weight="600">让健康计划，接得住生活的变化。</text>
+    <text x="54" y="284" font-size="18" fill="#5c5a5d">LangGraph orchestration · Persistent memory · MCP tools</text>
+    <rect x="52" y="324" width="641" height="44" rx="22" fill="#171719"/>
+    <text x="78" y="352" font-size="15" fill="#dfff74" font-weight="600">EVENT → CONTEXT → AGENTS → REVIEWABLE ACTION</text>
+    <rect x="850" y="49" width="236" height="54" rx="15" fill="#171719"/>
+    <text x="968" y="82" text-anchor="middle" font-size="17" font-weight="600" fill="#fff">Life changes</text>
+    <path d="M968 104v28M838 160v-28h260v28M968 132v28" stroke="#171719" stroke-width="2" fill="none"/>
+    <g fill="#dfff74"><rect x="782" y="160" width="112" height="60" rx="15"/><rect x="912" y="160" width="112" height="60" rx="15"/><rect x="1042" y="160" width="112" height="60" rx="15"/></g>
+    <g text-anchor="middle" font-size="16" font-weight="650"><text x="838" y="196">Activity</text><text x="968" y="196">Diet</text><text x="1098" y="196">Sleep</text></g>
+    <path d="M838 220v29h260v-29M968 249v27" stroke="#171719" stroke-width="2" fill="none"/>
+    <rect x="850" y="276" width="236" height="59" rx="15" fill="#faf8f2" stroke="#171719" stroke-width="1.5"/>
+    <text x="968" y="312" text-anchor="middle" font-size="18" font-weight="650">One coherent plan</text>
+    <text x="968" y="372" text-anchor="middle" font-size="12" letter-spacing=".4">SCOPED TOOLS · PERSISTENT STATE · USER CONTROL</text>
+  </g>
+</svg>
